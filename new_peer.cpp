@@ -34,7 +34,7 @@ void * server_doit(void * value)
     rewind(fp);
     send(*sockfd,&size,sizeof(size),0);
     int n;
-    if((n=fread(buffer,sizeof(char),buff_size,fp))>0&&size >0)
+    while((n=fread(buffer,sizeof(char),buff_size,fp))>0&&size >0)
     {
         send(*sockfd,buffer,n,0);
         memset(buffer,'\0',buff_size);
